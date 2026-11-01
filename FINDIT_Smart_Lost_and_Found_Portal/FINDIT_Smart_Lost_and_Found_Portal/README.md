@@ -2,73 +2,205 @@
 
 **Tagline:** Lost Something? Find It with FINDIT!
 
-## Technology stack
-- HTML – page structure
-- CSS – styling
-- JavaScript – browser interactions and demo-mode data
-- Oracle SQL – relational database
-- PL/SQL – stored program logic
-- ORDS – optional connection layer between the browser and Oracle Database
+## 📌 Project Overview
 
-## Important status
-This is the **FINDIT starter project pack (Milestone 1)**. The frontend can be opened and explored in demo mode. The Oracle database scripts create the initial schema, sample data, package, and trigger.
+FINDIT is a web-based Smart Lost & Found Portal designed to help students and college communities report, search, and recover lost and found items.
 
-The browser demo currently uses `localStorage`; it is **not yet connected to Oracle**. A real connection requires ORDS configuration and endpoint setup on your Oracle environment. Do not treat demo-mode records as database records.
+The platform provides a centralized system where users can register, log in, report lost or found items, and search for matching reports.
 
-## Folder structure
-```text
-FINDIT_Smart_Lost_and_Found_Portal/
-├── frontend/
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── report-lost.html
-│   ├── report-found.html
-│   ├── search.html
-│   ├── my-reports.html
-│   ├── style.css
-│   └── app.js
-├── database/
-│   ├── 01_create_tables.sql
-│   ├── 02_sample_data.sql
-│   ├── 03_package.sql
-│   └── 04_triggers.sql
-└── documentation/
-    ├── DEVELOPMENT_PLAN.md
-    └── DATABASE_GUIDE.md
+The application uses Oracle Database to store user and item information, while Oracle REST Data Services (ORDS) connects the frontend with the database.
+
+## 🎯 Project Objectives
+
+* Provide a centralized platform for lost and found items.
+* Allow users to report lost and found belongings.
+* Make searching for reported items easier.
+* Maintain user-specific reports.
+* Store information securely in an Oracle Database.
+* Reduce the difficulty of recovering lost belongings.
+
+## ✨ Key Features
+
+1. **User Registration:** New users can create accounts.
+2. **User Login:** Registered users can log in.
+3. **Dashboard:** Displays lost, found, and total report statistics.
+4. **Report Lost Item:** Users can submit details about lost belongings.
+5. **Report Found Item:** Users can report items they have found.
+6. **Search Reports:** Search items by name, category, location, and description.
+7. **Lost/Found Filters:** Filter reports by item type.
+8. **My Reports:** View reports submitted by the logged-in user.
+9. **Logout:** Allows users to end their session.
+10. **Login Protection:** Restricts dashboard access to logged-in users.
+
+## 🛠️ Technology Stack
+
+| Technology                       | Purpose                                   |
+| -------------------------------- | ----------------------------------------- |
+| HTML                             | Structure of web pages                    |
+| CSS                              | Website styling and layout                |
+| JavaScript                       | Frontend functionality and API requests   |
+| Oracle SQL                       | Database creation and management          |
+| PL/SQL                           | Stored procedures and database operations |
+| Oracle REST Data Services (ORDS) | Connects frontend with Oracle Database    |
+
+## 🏗️ Project Architecture
+
+The application follows this communication flow:
+
+**User → HTML/CSS → JavaScript → ORDS REST APIs → PL/SQL → Oracle Database**
+
+* HTML and CSS provide the user interface.
+* JavaScript handles user interactions and sends HTTP requests.
+* ORDS exposes REST API endpoints.
+* PL/SQL procedures perform database operations.
+* Oracle Database stores user accounts and item reports.
+
+## 🗄️ Database Design
+
+The project uses Oracle Database with the following main tables:
+
+### 1. USERS
+
+Stores registered user information.
+
+Main columns:
+
+* USER_ID
+* FULL_NAME
+* EMAIL
+* PASSWORD_HASH
+* ROLE
+* CREATED_AT
+
+### 2. LOST_ITEMS
+
+Stores information about lost belongings.
+
+Main columns:
+
+* LOST_ID
+* USER_ID
+* CATEGORY_ID
+* ITEM_NAME
+* ITEM_DESCRIPTION
+* LOST_LOCATION
+* LOST_DATE
+* CONTACT_DETAILS
+* ITEM_STATUS
+
+### 3. FOUND_ITEMS
+
+Stores information about found belongings.
+
+Main columns:
+
+* FOUND_ID
+* USER_ID
+* CATEGORY_ID
+* ITEM_NAME
+* ITEM_DESCRIPTION
+* FOUND_LOCATION
+* FOUND_DATE
+* CONTACT_DETAILS
+* ITEM_STATUS
+
+## 🔗 API Endpoints
+
+The application uses the following ORDS endpoints:
+
+| Method | Endpoint                        | Purpose              |
+| ------ | ------------------------------- | -------------------- |
+| POST   | `/ords/findit/api/register/`    | User registration    |
+| POST   | `/ords/findit/api/login/`       | User login           |
+| GET    | `/ords/findit/api/lost-items/`  | Retrieve lost items  |
+| POST   | `/ords/findit/api/lost-items/`  | Submit lost item     |
+| GET    | `/ords/findit/api/found-items/` | Retrieve found items |
+| POST   | `/ords/findit/api/found-items/` | Submit found item    |
+
+## ⚙️ Installation and Setup
+
+### Requirements
+
+* Oracle Database XE
+* Oracle SQL Developer
+* Oracle REST Data Services (ORDS)
+* Python (for running the local frontend server)
+* Web browser
+
+### Step 1: Clone Repository
+
+```bash
+git clone https://github.com/Raman-ABD/FINDIT-Smart-Lost-and-Found-Portal.git
 ```
 
-## Run the frontend demo
-1. Extract the ZIP.
-2. Open the `frontend` folder.
-3. Double-click `index.html`.
-4. Register a demo user, then log in.
-5. Try reporting lost/found items and searching.
+### Step 2: Open Frontend
 
-Demo login data is stored only in the browser's local storage. Clearing browser storage removes it.
+Open the project folder and navigate to the `frontend` directory.
 
-## Create the Oracle database objects
-1. Open Oracle SQL Developer and connect to your own application schema (do not use SYS for project tables).
-2. Open and run `database/01_create_tables.sql`.
-3. Run `database/02_sample_data.sql`.
-4. Run `database/03_package.sql`.
-5. Run `database/04_triggers.sql`.
-6. Check the tables using:
-   ```sql
-   SELECT * FROM USERS;
-   SELECT * FROM LOST_ITEMS;
-   SELECT * FROM FOUND_ITEMS;
-   ```
+### Step 3: Start Frontend Server
 
-Run scripts in the order shown. Review `documentation/DATABASE_GUIDE.md` first.
+Run this command in the terminal:
 
-## Next development milestone
-After the first database scripts run successfully, we will configure ORDS endpoints and replace demo-mode JavaScript storage with real Oracle-backed requests. ORDS is needed as the HTTP bridge; HTML/JavaScript in a browser should not connect directly to Oracle using database credentials.
+```bash
+python -m http.server 5500
+```
 
-## Security note
-This is an educational starter. The demo login is not production authentication. Before real deployment, implement secure password hashing, session/token handling, authorization checks, input validation, and privacy controls through a properly configured backend.
+Open the browser:
 
+```text
+http://localhost:5500/
+```
 
-## New backend extensions
-Run `database/05_portal_package.sql` and `database/06_smart_matching.sql` as FINDIT. Read `documentation/API_INTEGRATION_STATUS.md` before creating the additional ORDS handlers. The added procedures do not by themselves create REST endpoints.
+### Step 4: Start ORDS
+
+Configure ORDS with your Oracle Database and start the server using your local configuration:
+
+```bash
+ords --config YOUR_ORDS_CONFIG_PATH serve --port 8081
+```
+
+### Step 5: Database Connection
+
+Create and configure the FINDIT schema in Oracle Database. Run the required SQL scripts and configure the ORDS module and REST handlers.
+
+**Note:** Database credentials and local configuration files are not included in this repository. Configure your own Oracle environment before running the application.
+
+## 🧪 Testing
+
+The following functional tests have been performed successfully:
+
+* User registration
+* User login
+* Lost item submission
+* Found item submission
+* Dashboard statistics
+* My Reports
+* Search functionality
+* Lost and Found filters
+* Logout
+* Dashboard login protection
+* Oracle Database record verification
+
+## 🔮 Future Scope
+
+* Automatic matching of lost and found items.
+* Email notifications when matching items are found.
+* Image uploads for lost and found belongings.
+* Advanced search and filtering.
+* Admin dashboard for managing reports.
+* Improved authentication and security.
+
+## 🔐 Security Note
+
+This project is developed for educational purposes. Passwords are stored as SHA-256 hashes in the current implementation. Production deployment should use stronger password hashing, secure session management, authorization checks, HTTPS, and appropriate privacy controls.
+
+## 👨‍💻 Author
+
+**Raman**
+
+MCA – Data Science
+Mini Project – Semester 1
+
+## 📄 License
+
+This project is developed for academic and educational purposes.
