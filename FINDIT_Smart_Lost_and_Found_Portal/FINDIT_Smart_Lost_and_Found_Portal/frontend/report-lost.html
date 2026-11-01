@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Report Lost Item | FINDIT</title><link rel="stylesheet" href="style.css"></head>
+<body><header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">F</span> FINDIT</a><nav><a href="dashboard.html">Dashboard</a><a href="search.html">Search</a><a href="my-reports.html">My Reports</a></nav></header>
+<main class="page-wrap narrow"><a class="back-link" href="dashboard.html">← Back to dashboard</a><section class="panel form-panel"><span class="eyebrow">LOST SOMETHING?</span><h1>Report Lost Item</h1><p class="muted">Share the details so others can help you find it.</p>
+<form id="lostForm">
+<label>Item name<input id="itemName" required maxlength="100" placeholder="e.g. Black wallet"></label>
+<label>Category<select id="category" required><option value="">Select category</option><option>Electronics</option><option>Documents</option><option>Bags & Wallets</option><option>Keys</option><option>Clothing</option><option>Accessories</option><option>Other</option></select></label>
+<label>Location<input id="location" required maxlength="150" placeholder="Where was it lost/found?"></label>
+<label>Date<input type="date" id="itemDate" required></label>
+<label>Description<textarea id="description" rows="4" maxlength="1000" placeholder="Add identifying details (avoid sharing sensitive information publicly)."></textarea></label>
+<label>Contact details<input id="contact" required maxlength="120" placeholder="Email or phone"></label>
+<button class="button primary full" type="submit">Submit Lost Report</button></form><div id="message" class="message"></div></section></main><script src="app.js"></script></body></html>

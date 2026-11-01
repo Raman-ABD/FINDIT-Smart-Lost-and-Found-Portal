@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard | FINDIT</title><link rel="stylesheet" href="style.css"></head>
+<body><header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">F</span> FINDIT</a><nav><a href="search.html">Search</a><a href="my-reports.html">My Reports</a><button class="text-button" onclick="logout()">Logout</button></nav></header>
+<main class="page-wrap"><div class="welcome-row"><div><span class="eyebrow">YOUR SPACE</span><h1>Dashboard</h1><p class="muted" id="welcomeText">Welcome to FINDIT.</p></div><span class="demo-pill">DEMO MODE</span></div>
+    <section class="stats-grid">
+
+<div class="stat-card">
+    <h3>Total Lost Items</h3>
+    <p id="totalLost">Loading...</p>
+</div>
+
+<div class="stat-card">
+    <h3>Total Found Items</h3>
+    <p id="totalFound">Loading...</p>
+</div>
+
+<div class="stat-card">
+    <h3>Total Reports</h3>
+    <p id="totalReports">Loading...</p>
+</div>
+
+<div class="stat-card">
+    <h3>Open Reports</h3>
+    <p id="openReports">Loading...</p>
+</div>
+
+</section>
+
+<div class="action-grid"><a class="action-card" href="report-lost.html"><span>＋</span><h3>Report Lost Item</h3><p>Tell the community what you lost.</p></a><a class="action-card" href="report-found.html"><span>⌖</span><h3>Report Found Item</h3><p>Help someone recover their item.</p></a><a class="action-card" href="search.html"><span>⌕</span><h3>Search Items</h3><p>Explore lost and found reports.</p></a><a class="action-card" href="my-reports.html"><span>▤</span><h3>My Reports</h3><p>Review reports submitted by you.</p></a></div>
+<section class="panel"><h2>Recent community reports</h2><div id="recentItems" class="item-list"></div></section></main><script src="app.js"></script></body></html>

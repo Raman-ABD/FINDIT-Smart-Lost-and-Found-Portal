@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Search | FINDIT</title><link rel="stylesheet" href="style.css"></head>
+<body><header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">F</span> FINDIT</a><nav><a href="dashboard.html">Dashboard</a><a href="my-reports.html">My Reports</a></nav></header>
+<main class="page-wrap"><span class="eyebrow">COMMUNITY ITEMS</span><h1>Search reports</h1><p class="muted">Search by item name, category or location.</p>
+<div class="search-bar"><input id="searchInput" placeholder="Try “wallet”, “documents” or “library”"><select id="typeFilter"><option value="ALL">All reports</option><option value="LOST">Lost only</option><option value="FOUND">Found only</option></select><button class="button primary" onclick="renderSearch()">Search</button></div>
+<div id="searchResults" class="cards-grid"></div></main><script src="app.js"></script></body></html>
